@@ -10,22 +10,23 @@ import 'logging.service.dart';
 
 enum Status { loading, error, success }
 
-class DataService extends GetxService {
+class DataService2 extends GetxService {
+  Worker _getxWorker;
   WebSocketChannel _channel;
 
   final _logger = LoggingService().logger;
-  final Rx<UserDataProfile> _userDataProfile = UserDataProfile().obs;
-  final Rx<Status> _userDataProfileStatus = Status.loading.obs;
+  final Rx<UserDataProfile> userDataProfile = UserDataProfile().obs;
+  final Rx<Status> userDataProfileStatus = Status.loading.obs;
 
   final ObserverList<Function> _listeners = new ObserverList<Function>();
   final LinkedHashSet _listenerSet = new LinkedHashSet();
 
-  Rx<UserDataProfile> fetchUserDataProfile() {
+  void fetchUserDataProfile() {
     Function _fetchUserDataProfileCallback = (Map<String, dynamic> _messageEventMap, String _uuid) {
       if (_messageEventMap['event'] == '/identity/$_uuid') {
-        _userDataProfile(UserDataProfile.fromJson(_messageEventMap['data']));
-        _userDataProfileStatus(Status.success);
-        _logger.d('---------------userProfile.1: ${_userDataProfile.value.uuid}');
+        userDataProfile(UserDataProfile.fromJson(_messageEventMap['data']));
+        userDataProfileStatus(Status.success);
+        _logger.d('---------------userProfile.1: ${userDataProfile.value.uuid}');
       }
     };
 
@@ -34,8 +35,6 @@ class DataService extends GetxService {
 
     _addListener(uuid, (messageEventMap) => _fetchUserDataProfileCallback(messageEventMap, uuid));
     _send(rawJson);
-
-    return _userDataProfile;
   }
 
   _connect() async {

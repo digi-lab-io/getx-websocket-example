@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_websocket_example/controller/user_data_profile.controller_v2.dart';
+import 'package:getx_websocket_example/services/data.service_v2.dart';
 import 'package:getx_websocket_example/services/logging.service.dart';
 
-class DetailScreen extends GetWidget<UserDataProfileControllerV2> {
+class DetailScreen extends GetWidget<DataService2> {
   final logger = LoggingService().logger;
 
   @override
@@ -13,10 +13,10 @@ class DetailScreen extends GetWidget<UserDataProfileControllerV2> {
     return Scaffold(
         appBar: AppBar(
           title: Obx(() {
-            if (controller.status() == Status.loading) {
+            if (controller.userDataProfileStatus() == Status.loading) {
               return Text('Loading ...');
             } else {
-              return Text(controller.userProfileData().name);
+              return Text(controller.userDataProfile().name);
             }
           }),
           leading: IconButton(
@@ -28,12 +28,12 @@ class DetailScreen extends GetWidget<UserDataProfileControllerV2> {
         ),
         body: Obx(() {
           const style = TextStyle(fontSize: 24);
-          if (controller.status() == Status.loading) {
+          if (controller.userDataProfileStatus() == Status.loading) {
             return Center(child: Text('Loading ...', style: style));
           } else {
             return Center(
                 child: Text(
-              controller.userProfileData().email,
+              controller.userDataProfile().email,
               style: style,
             ));
           }
