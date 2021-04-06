@@ -9,14 +9,14 @@ class DetailScreen extends GetWidget<UserDataProfileControllerV2> {
   @override
   Widget build(BuildContext context) {
     logger.v('DetailScreen 1.1');
-    controller.fetchData();
+    controller.fetchUserDataProfile();
     return Scaffold(
         appBar: AppBar(
           title: Obx(() {
             if (controller.status() == Status.loading) {
               return Text('Loading ...');
             } else {
-              return Text(controller.data().name);
+              return Text(controller.userProfileData().name);
             }
           }),
           leading: IconButton(
@@ -33,7 +33,7 @@ class DetailScreen extends GetWidget<UserDataProfileControllerV2> {
           } else {
             return Center(
                 child: Text(
-              controller.data().email,
+              controller.userProfileData().email,
               style: style,
             ));
           }

@@ -25,7 +25,7 @@ class DataService extends GetxService {
     };
 
     String uuid = "xyz";
-    String rawJson = '{ "event": "/identity/$uuid", "data": { "uuid": "$uuid", "name": "acme", "email": "xyz@acme.com" } }';
+    String rawJson = '{ "event": "/identity/$uuid", "data": { "uuid": "$uuid", "name": "John Doe", "email": "john.doe@acme.com" } }';
 
     _addListener(uuid, (messageEventMap) => _fetchUserDataProfileCallback(messageEventMap, uuid));
     _send(rawJson);

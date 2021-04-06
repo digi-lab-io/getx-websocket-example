@@ -5,29 +5,24 @@ import 'package:getx_websocket_example/services/data.service.dart';
 enum Status { loading, error, success }
 
 class UserDataProfileControllerV2 extends GetxController {
-  final Rx<UserDataProfile> data = UserDataProfile().obs;
-  final status = Status.loading.obs;
-  final dataService = Get.find<DataService>();
-  Worker getxWorker;
+  Worker _getxWorker;
 
-  void change(UserDataProfile _profile, {Status newStatus}) {
-    data(_profile);
-    status(newStatus);
-  }
+  final Rx<UserDataProfile> userProfileData = UserDataProfile().obs;
+  final Rx<Status> status = Status.loading.obs;
+  final DataService _dataService = Get.find<DataService>();
 
-  void fetchData() {
-    getxWorker = ever(dataService.fetchUserDataProfile(), (_profile) {
+  void fetchUserDataProfile() {
+    _getxWorker = ever(_dataService.fetchUserDataProfile(), (_profile) {
       if (_profile.uuid != null) {
-        change(_profile, newStatus: Status.success);
-      } else {
-        change(null, newStatus: Status.loading);
+        userProfileData(_profile);
+        status(Status.success);
       }
     });
   }
 
   @override
   void onClose() {
-    getxWorker?.dispose();
+    _getxWorker?.dispose();
   }
 
   @override
