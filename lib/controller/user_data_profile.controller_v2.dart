@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:getx_websocket_example/model/user-data-profile.entity.dart';
-import 'package:getx_websocket_example/services/data.service.dart';
+import 'package:getx_websocket_example/services/data.service_v1.dart';
 
 enum Status { loading, error, success }
 

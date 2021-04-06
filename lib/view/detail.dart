@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:getx_websocket_example/services/data.service_v2.dart';
 import 'package:getx_websocket_example/services/logging.service.dart';
 
-class DetailScreenV2 extends GetWidget<DataService2> {
+class DetailScreenV2 extends GetWidget<DataServiceV2> {
   final logger = LoggingService().logger;
 
   @override
