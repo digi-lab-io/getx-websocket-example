@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'binding/detail_binding.dart';
 import 'binding/home_binding.dart';
 import 'binding/initial_binding.dart';
-import 'view/detail.dart';
+import 'view/detail_v2.dart';
 import 'view/home.dart';
 
 void main() {

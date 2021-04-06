@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'binding/detail_binding.dart';
 import 'binding/home_binding.dart';
 import 'binding/initial_binding.dart';
-import 'view/detail.dart';
+import 'view/detail_v1.dart';
 import 'view/home.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: "/home", page: () => HomeScreen(), binding: HomeBinding()),
-        GetPage(name: "/detail", page: () => DetailScreenV2(), binding: DetailBinding()),
+        GetPage(name: "/detail", page: () => DetailScreenV1(), binding: DetailBinding()),
       ],
       initialRoute: "/home",
     );

@@ -26,6 +26,7 @@ dependencies:
   get: 4.1.2
   web_socket_channel: 1.2.0
   logger: ^1.0.0
+  rx_widgets: ^3.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

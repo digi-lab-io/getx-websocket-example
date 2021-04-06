@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_websocket_example/controller/home_controller.dart';
 
-import 'detail.dart';
+import 'detail_v2.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
