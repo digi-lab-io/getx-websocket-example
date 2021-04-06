@@ -10,12 +10,11 @@ import 'logging.service.dart';
 
 enum Status { loading, error, success }
 
-class DataService extends GetxService {
+class DataServiceV1 extends GetxService {
   WebSocketChannel _channel;
 
   final _logger = LoggingService().logger;
   final Rx<UserDataProfile> _userDataProfile = UserDataProfile().obs;
-  final Rx<Status> _userDataProfileStatus = Status.loading.obs;
 
   final ObserverList<Function> _listeners = new ObserverList<Function>();
   final LinkedHashSet _listenerSet = new LinkedHashSet();
@@ -24,7 +23,6 @@ class DataService extends GetxService {
     Function _fetchUserDataProfileCallback = (Map<String, dynamic> _messageEventMap, String _uuid) {
       if (_messageEventMap['event'] == '/identity/$_uuid') {
         _userDataProfile(UserDataProfile.fromJson(_messageEventMap['data']));
-        _userDataProfileStatus(Status.success);
         _logger.d('---------------userProfile.1: ${_userDataProfile.value.uuid}');
       }
     };

@@ -12,7 +12,7 @@ class InitialBinding extends Bindings {
   @override
   void dependencies() {
     logger.i("InitialBinding");
-    Get.put<DataService>(DataService());
+    Get.put<DataServiceV1>(DataServiceV1());
     Get.put<DataService2>(DataService2());
     Get.put<UserDataProfileControllerV1>(UserDataProfileControllerV1());
     Get.put<UserDataProfileControllerV2>(UserDataProfileControllerV2());

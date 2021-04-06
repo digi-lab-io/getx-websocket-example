@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: "/home", page: () => HomeScreen(), binding: HomeBinding()),
-        GetPage(name: "/detail", page: () => DetailScreen(), binding: DetailBinding()),
+        GetPage(name: "/detail", page: () => DetailScreenV2(), binding: DetailBinding()),
       ],
       initialRoute: "/home",
     );

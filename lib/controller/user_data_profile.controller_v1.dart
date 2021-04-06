@@ -3,7 +3,7 @@ import 'package:getx_websocket_example/model/user-data-profile.entity.dart';
 import 'package:getx_websocket_example/services/data.service.dart';
 
 class UserDataProfileControllerV1 extends GetxController with StateMixin<UserDataProfile> {
-  final dataService = Get.find<DataService>();
+  final dataService = Get.find<DataServiceV1>();
   Worker getxWorker;
 
   void fetchData() {

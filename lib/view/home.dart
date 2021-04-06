@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 // print(dataService.fetchData());
                 //homeController.increment();
-                Get.to(() => DetailScreen());
+                Get.to(() => DetailScreenV2());
               },
               child: Text("Go to details page"),
               color: Colors.red,

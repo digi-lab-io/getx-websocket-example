@@ -9,7 +9,7 @@ class UserDataProfileControllerV2 extends GetxController {
 
   final Rx<UserDataProfile> userProfileData = UserDataProfile().obs;
   final Rx<Status> status = Status.loading.obs;
-  final DataService _dataService = Get.find<DataService>();
+  final DataServiceV1 _dataService = Get.find<DataServiceV1>();
 
   void fetchUserDataProfile() {
     _getxWorker = ever(_dataService.fetchUserDataProfile(), (_profile) {
