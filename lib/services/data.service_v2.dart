@@ -11,7 +11,6 @@ import 'logging.service.dart';
 enum Status { loading, error, success }
 
 class DataService2 extends GetxService {
-  Worker _getxWorker;
   WebSocketChannel _channel;
 
   final _logger = LoggingService().logger;
