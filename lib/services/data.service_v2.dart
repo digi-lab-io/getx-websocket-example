@@ -8,14 +8,11 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'logging.service.dart';
 
-enum Status { loading, error, success }
-
 class DataServiceV2 extends GetxService {
   WebSocketChannel _channel;
 
   final _logger = LoggingService().logger;
   final Rx<UserDataProfile> userDataProfile = UserDataProfile().obs;
-  final Rx<Status> userDataProfileStatus = Status.loading.obs;
 
   final ObserverList<Function> _listeners = new ObserverList<Function>();
   final LinkedHashSet _listenerSet = new LinkedHashSet();
@@ -24,7 +21,6 @@ class DataServiceV2 extends GetxService {
     Function _fetchUserDataProfileCallback = (Map<String, dynamic> _messageEventMap, String _uuid) {
       if (_messageEventMap['event'] == '/identity/$_uuid') {
         userDataProfile(UserDataProfile.fromJson(_messageEventMap['data']));
-        userDataProfileStatus(Status.success);
         _logger.d('---------------userProfile.1: ${userDataProfile.value.uuid}');
       }
     };
@@ -62,10 +58,6 @@ class DataServiceV2 extends GetxService {
     _listenerSet.add(id);
   }
 
-  _removeListener(Function callback) {
-    _listeners.remove(callback);
-  }
-
   /// ----------------------------------------------------------
   /// Callback which is invoked each time that we are receiving
   /// a message from the server
@@ -74,19 +66,6 @@ class DataServiceV2 extends GetxService {
     _listeners.forEach((Function callback) {
       callback(message);
     });
-  }
-
-  /// ----------------------------------------------------------
-  /// Closes the WebSocket communication
-  /// ----------------------------------------------------------
-  _reset() {
-    if (_channel != null) {
-      if (_channel.sink != null) {
-        _logger.d('Closing connection ...');
-        _channel.sink.close();
-        _connect();
-      }
-    }
   }
 
   @override
