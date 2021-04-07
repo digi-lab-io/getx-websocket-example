@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_websocket_example/services/data.service_v2.dart';
+import 'package:getx_websocket_example/services/data.service_v3.dart';
 import 'package:getx_websocket_example/services/logging.service.dart';
 
-class DetailScreenV1 extends GetWidget<DataServiceV2> {
+class DetailScreenV1 extends GetWidget<DataServiceV3> {
   final logger = LoggingService().logger;
 
   @override
