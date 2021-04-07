@@ -25,25 +25,25 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24),
               ),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
-                // Get.to(() => DetailScreen());
-                // print(dataService.fetchData());
                 homeController.increment();
               },
               child: Text("count++"),
-              color: Colors.black,
-              textColor: Colors.white,
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.black,
+              ),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () {
-                // print(dataService.fetchData());
-                //homeController.increment();
                 Get.to(() => DetailScreenV2());
               },
               child: Text("Go to details page"),
-              color: Colors.red,
-              textColor: Colors.white,
+              style: TextButton.styleFrom(
+                primary: Colors.white,
+                backgroundColor: Colors.red,
+              ),
             ),
           ],
         ),

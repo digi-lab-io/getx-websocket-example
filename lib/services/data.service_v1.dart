@@ -62,10 +62,6 @@ class DataServiceV1 extends GetxService {
     _listenerSet.add(id);
   }
 
-  _removeListener(Function callback) {
-    _listeners.remove(callback);
-  }
-
   /// ----------------------------------------------------------
   /// Callback which is invoked each time that we are receiving
   /// a message from the server
@@ -74,19 +70,6 @@ class DataServiceV1 extends GetxService {
     _listeners.forEach((Function callback) {
       callback(message);
     });
-  }
-
-  /// ----------------------------------------------------------
-  /// Closes the WebSocket communication
-  /// ----------------------------------------------------------
-  _reset() {
-    if (_channel != null) {
-      if (_channel.sink != null) {
-        _logger.d('Closing connection ...');
-        _channel.sink.close();
-        _connect();
-      }
-    }
   }
 
   @override
